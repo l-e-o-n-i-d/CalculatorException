@@ -1,5 +1,6 @@
 package home_work_8.ex4;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -12,11 +13,12 @@ public class Main {
         while (isActive) {
             System.out.println("Введіть знак арефметичної операції ( +, -, *, / ):");
             String sign = sc.next();
+            try {
             System.out.println("Введіть перше число:");
             double firstUserNumber = sc.nextDouble();
             System.out.println("Введіть наступне число:");
             double secondUserNumber = sc.nextDouble();
-            try {
+//            try {
                 double result;
                 switch (sign){
                     case "+":
@@ -38,6 +40,10 @@ public class Main {
                 }
             }catch (ArithmeticException ex){
                 System.err.println(ex.getMessage());
+            }
+            catch (InputMismatchException ex){
+                System.err.println("Помилка вводу. Допустимі лише цифри! ");
+                sc.nextLine();
             }
             System.out.println("Повторити обчислення ? (Y-так/N-ні)");
             String isContinue = sc.next();
